@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<h2>@ViewBag.Title</h2>
+
+<h3>Login History</h3>
+<p>Current user: @ViewBag.CurrentUser</p>
+<ul>
+    @foreach (var User in ViewBag.UserInfo)
+    {
+        <li>Power timestamps @User</li>
+    }
+
+    @foreach (var User in ViewBag.UserPower)
+    {
+        <li>Power @User KW</li>
+    }
+</ul>

@@ -1,0 +1,458 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+
+
+<script type="text/javascript">
+    $(function () {
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            legend: {
+                fontSize: 10,
+                fontFamily: "Helvetica"
+            },
+            theme: "light2",
+            data: [
+            {
+                type: "doughnut",
+                indexLabelFontFamily: "Garamond",
+                indexLabelFontSize: 10,
+                indexLabel: "{label} {y}%",
+                startAngle: -20,
+                showInLegend: true,
+                toolTipContent: "{legendText} {y}%",
+                dataPoints: [
+                    { y: 5, legendText: "Kitchen"},
+                    { y: 5, legendText: "Bedrooms"},
+                    { y: 5, legendText: "Bathroom"},
+                    { y: 5, legendText: "Pantry"},
+                    { y: 5, legendText: "Living room"},
+                    { y: 75, legendText: "Others"},
+                ],
+
+            }
+            ]
+        });
+        var chart1 = new CanvasJS.Chart("chartContainer1", {
+            title: {
+                text: "Consumed"
+            },
+            animationEnabled: true,
+            axisY: {
+                title: "Power",
+                suffix: " W"
+            },
+            axisX: {
+                title: "Last months"
+            },
+            data: [
+			{
+			    toolTipContent: "{y} Watts",
+			    type: "splineArea",
+			    markerSize: 5,
+			    color: "rgba(54,173,173,.7)",
+
+			    //You can add dynamic data from the controller as shown below. Check the controller and uncomment the line which generates dataPoints.
+			    dataPoints: @Html.Raw(ViewBag.DataPoints),
+			}
+            ]
+        });
+       var chart2 = new CanvasJS.Chart("chartContainer2", {
+           title: {
+               text: "Produced"
+           },
+           animationEnabled: true,
+           axisY: {
+               title: "Power",
+               suffix: " W"
+           },
+            axisX: {
+                title: "Last months"
+            },
+           data: [
+			{
+			    toolTipContent: "{y} Watts",
+			    type: "splineArea",
+			    markerSize: 5,
+			    color: "rgba(54,54,173,.7)",
+       
+			    //You can add dynamic data from the controller as shown below. Check the controller and uncomment the line which generates dataPoints.
+			    dataPoints: @Html.Raw(ViewBag.DataPoints1),
+			}
+           ]
+       });
+       chart2.render();
+        chart1.render();
+        chart.render();
+    });
+</script>
+
+    <div class="hold-transition skin-blue sidebar-mini">
+        <div class="wrapper">
+            <div class="content-wrapper">
+
+                <!-- Content Header (Page header) -->
+                <aside class="main-sidebar">
+                    <!-- sidebar: style can be found in sidebar.less -->
+                    <section class="sidebar">
+                        <!-- Sidebar user panel -->
+                        <div class="user-panel">
+                            <div class="pull-left image">
+                                <img src="~/outpack/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                            </div>
+                            <div class="pull-left info">
+                                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                            </div>
+                        </div>
+                        <!-- search form -->
+                        <form action="#" method="get" class="sidebar-form">
+                            <div class="input-group">
+                                <input type="text" name="q" class="form-control" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                        <!-- /.search form -->
+                        <!-- sidebar menu: : style can be found in sidebar.less -->
+                        <ul class="sidebar-menu" data-widget="tree">
+                            <li class="header">Menu Options</li>
+                            <li class="active treeview menu-open">
+                                <a href="#">
+                                    <i class="fa fa-dashboard"></i> <span>My Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="pages/widgets.html">
+                                    <i class="fa fa-th"></i>
+                                    <span>Tasks</span>
+                                    <span class="pull-right-container">
+                                        <small class="label pull-right bg-yellow">0</small>
+                                        <small class="label pull-right bg-green">0</small>
+                                        <small class="label pull-right bg-red">0</small>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="treeview">
+                                <a href="#">
+                                    <i class="fa fa-table"></i> <span>About</span>
+                                    <span class="pull-right-container">
+                                        <i class="fa fa-angle-left pull-right"></i>
+                                    </span>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Energy Mover</a></li>
+                                    <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
+                                </ul>
+                            </li>
+
+                            <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+                            <li class="header">Tasks Signals</li>
+                            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+                            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+                            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+                        </ul>
+                    </section>
+                </aside>
+
+                <!-- Main content -->
+                <section class="content">
+
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-flower-outline"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Energy Produced</span>
+                                    <span class="info-box-number">@ViewBag.MENProduced W</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-red"><i class="ion ion-flash"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Energy Consumed</span>
+                                    <span class="info-box-number">@ViewBag.MENConsumed KW</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <!-- fix for small devices only -->
+                        <div class="clearfix visible-sm-block"></div>
+
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Wallet</span>
+                                    <span class="info-box-number">@ViewBag.MCoins Solar Coins</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-md-3 col-sm-6 col-xs-12">
+                            <div class="info-box">
+                                <span class="info-box-icon bg-yellow"><i class="fa fa-trophy"></i></span>
+
+                                <div class="info-box-content">
+                                    <span class="info-box-text">Monthly Ranking</span>
+                                    <span class="info-box-number">@ViewBag.MShops º Place</span>
+                                </div>
+                                <!-- /.info-box-content -->
+                            </div>
+                            <!-- /.info-box -->
+                        </div>
+                        <!-- /.col -->
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Electricity Usage</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="chartContainer1"></div>
+
+                                            <hr /> <hr /> <hr />
+                                            <hr /> <hr /> <hr /> <hr /> <hr /> <hr />
+                                            <hr /> <hr /> <hr /> <hr /> <hr /> <hr />
+                                            <hr /> <hr /> <hr />
+                                        </div>
+
+
+
+                                        <div class="col-md-6">
+                                            <div id="chartContainer2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                            <div class="col-md-2">
+
+                            </div>
+                        <div class="col-md-8">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Electricity Usage</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+
+                                <!-- /.box-header -->
+                                <div class="box-body">
+                                    <div class="row">
+
+                                        <div class="col-md-6">
+                                            <p class="text-center">
+                                                <strong>Goal Completion for current year</strong>
+                                            </p>
+
+                                            <div class="progress-group">
+                                                <span class="progress-text">Produced energy</span>
+                                                <span class="progress-number"><b>@ViewBag.YENProduced</b>/200 KW</span>
+
+                                                <div class="progress sm">
+                                                    @{ 
+                                                        var prct = ViewBag.YENProduced * 100 / 200;
+                                                    }
+                                                    <div class="progress-bar progress-bar-red" style="width: @prct%; background-color:green" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Consumed Energy</span>
+                                                <span class="progress-number"><b>@ViewBag.YENConsumed</b>/400 KW</span>
+
+                                                <div class="progress sm">
+                                                    @{
+                                                        var prct1 = ViewBag.YENConsumed * 100 / 400;
+                                                    }
+                                                    <div class="progress-bar progress-bar-red" style="width: @prct1%; background-color:red" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Earned coins</span>
+                                                <span class="progress-number"><b>@ViewBag.YCoins</b>/800 Solar Coins</span>
+
+                                                <div class="progress sm">
+                                                    @{
+                                                        var prct2 = ViewBag.YCoins * 100 / 800;
+                                                    }
+                                                    <div class="progress-bar progress-bar-green" style="width: @prct2%"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                            <div class="progress-group">
+                                                <span class="progress-text">Online shops</span>
+                                                <span class="progress-number"><b>@ViewBag.YShops</b>/500 Shops</span>
+
+                                                <div class="progress sm">
+                                                    @{
+                                                        var prct3 = ViewBag.YShops * 100 / 500;
+                                                    }
+                                                    <div class="progress-bar progress-bar-green" style="width: @prct3%; background-color:yellow"></div>
+                                                </div>
+                                            </div>
+                                            <!-- /.progress-group -->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="box-footer">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block border-right">
+                                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 17%</span>
+                                                <h5 class="description-header">3210.43€</h5>
+                                                <span class="description-text">TOTAL REVENUE</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block border-right">
+                                                <span class="description-percentage text-yellow"><i class="fa fa-caret-left"></i> 0%</span>
+                                                <h5 class="description-header">9210€</h5>
+                                                <span class="description-text">TOTAL COST</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block border-right">
+                                                <span class="description-percentage text-green"><i class="fa fa-caret-up"></i> 20%</span>
+                                                <h5 class="description-header">-6210€</h5>
+                                                <span class="description-text">TOTAL PROFIT</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <!-- /.col -->
+                                        <div class="col-sm-3 col-xs-6">
+                                            <div class="description-block">
+                                                <span class="description-percentage text-red"><i class="fa fa-caret-down"></i> 18%</span>
+                                                <h5 class="description-header">0</h5>
+                                                <span class="description-text">GOAL COMPLETIONS</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- TABLE: LATEST ORDERS -->
+                            <div class="box box-info">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Ranking (TOP 5 Last mounth)</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <!-- /.box-header -->
+                                 <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table no-margin">
+                                <thead>
+                                    <tr>
+                                        <th>Place</th>
+                                        <th>Name</th>
+                                        <th>Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><a href="pages/examples/invoice.html">1</a></td>
+                                        <td>Pedro Pereira</td>
+                                        <td><span class="label label-success">230 KW</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="pages/examples/invoice.html">2</a></td>
+                                        <td>Agostinho Silva</td>
+                                        <td><span class="label label-info">122 KW</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="pages/examples/invoice.html">3</a></td>
+                                        <td>Miguel Ferreira</td>
+                                        <td><span class="label label-warning">83 KW</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="pages/examples/invoice.html">4</a></td>
+                                        <td>José Silva</td>
+                                        <td>21 KW</td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="pages/examples/invoice.html">5</a></td>
+                                        <td>António Silva</td>
+                                        <td>13 KW</td>
+                                    </tr>
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.table-responsive -->
+                    </div>
+                                <!-- /.box-body -->
+                                <div class="box-footer clearfix">
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-info btn-flat pull-left">About</a>
+                                    <a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All</a>
+                                </div>
+                                <!-- /.box-footer -->
+                            </div>
+                            <!-- /.box -->
+                        </div>
+                    </div>
+
+                </section>
+        </div>
+
+
+    </div>
+</div>
+

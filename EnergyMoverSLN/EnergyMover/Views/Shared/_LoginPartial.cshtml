@@ -1,0 +1,41 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <!-- User Account: style can be found in dropdown.less -->
+            <li class="dropdown user user-menu">
+                <ul>
+                    <li>
+                        <div >
+                            <a href="@Url.Action("Index", "Manage", routeValues: null)">
+                                <img src="~/outpack/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">@User.Identity.GetUserName()</span>
+                            </a>
+                        </div>
+                        <div >
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="fa fa-power-off"> Log off</a>
+                        </div>
+                    </li>
+                </ul>
+                
+            </li>
+
+            <!-- Control Sidebar Toggle Button -->
+            <li>
+                <a href="javascript:document.getElementById('logoutForm').submit()" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
