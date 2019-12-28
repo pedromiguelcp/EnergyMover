@@ -23,14 +23,14 @@
                 showInLegend: true,
                 toolTipContent: "{legendText} {y}%",
                 dataPoints: [
-                    { y: 5, legendText: "Kitchen"},
-                    { y: 5, legendText: "Bedrooms"},
-                    { y: 5, legendText: "Bathroom"},
-                    { y: 5, legendText: "Pantry"},
-                    { y: 5, legendText: "Living room"},
-                    { y: 75, legendText: "Others"},
+                    { y: @ViewBag.ENKitchen, legendText: "Kitchen"},
+                    { y: @ViewBag.ENBedrooms, legendText: "Bedrooms"},
+                    { y: @ViewBag.ENBathroom, legendText: "Bathroom"},
+                    { y: @ViewBag.ENPantry, legendText: "Pantry"},
+                    { y: @ViewBag.ENLivingRoom, legendText: "Living room"},
+                    { y: @ViewBag.ENOthers, legendText: "Others"},
                 ],
-
+                //dataPoints: @Html.Raw(ViewBag.DataPoints3),
             }
             ]
         });
@@ -249,7 +249,7 @@
 
 
                                         <div class="col-md-6">
-                                            <div id="chartContainer2"></div>
+                                            <div id="chartContainer2" ></div>
                                         </div>
                                     </div>
                                 </div>
@@ -259,13 +259,10 @@
                     </div>
                     
                     <div class="row">
-                            <div class="col-md-2">
-
-                            </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="box box-default">
                                 <div class="box-header with-border">
-                                    <h3 class="box-title">Electricity Usage</h3>
+                                    <h3 class="box-title">My Goals</h3>
 
                                     <div class="box-tools pull-right">
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -277,9 +274,6 @@
 
                                 <!-- /.box-header -->
                                 <div class="box-body">
-                                    <div class="row">
-
-                                        <div class="col-md-6">
                                             <p class="text-center">
                                                 <strong>Goal Completion for current year</strong>
                                             </p>
@@ -332,8 +326,7 @@
                                                 </div>
                                             </div>
                                             <!-- /.progress-group -->
-                                        </div>
-                                    </div>
+                                     
                                 </div>
                                 <div class="box-footer">
                                     <div class="row">
@@ -376,6 +369,27 @@
                                     <!-- /.row -->
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="box box-default">
+                                <div class="box-header with-border">
+                                    <h3 class="box-title">Electricity Consumed</h3>
+
+                                    <div class="box-tools pull-right">
+                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                                    </div>
+                                </div>
+                                <div class="box-body">
+                                    <p class="text-center">
+                                        <strong>Electricity consumption by house divisions</strong>
+                                    </p>
+                                    <div id="chartContainer" style="height: 300px;"></div>
+                                </div>
+                                </div>
                         </div>
                     </div>
 

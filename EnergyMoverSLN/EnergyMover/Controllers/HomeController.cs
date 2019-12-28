@@ -45,6 +45,16 @@ namespace EnergyMover.Controllers
             ViewBag.YENConsumed = 398;
             ViewBag.YCoins = 480;
             ViewBag.YShops = 148;
+            
+            ViewBag.ENKitchen = 22;
+            ViewBag.ENBedrooms = 10;
+            ViewBag.ENBathroom = 19;
+            ViewBag.ENPantry = 26;
+            ViewBag.ENLivingRoom = 15;
+            ViewBag.ENOthers = 8;
+
+
+
 
             /*
              Calcular o ranking
