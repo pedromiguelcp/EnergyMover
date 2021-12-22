@@ -6,7 +6,7 @@
 
 
 <h1 align="center">
-    <img alt="LogIn" title="LogIn" src="LogIn.PNG" />
+    <img alt="LogIn" title="LogIn" src="LogIn.png" />
 </h1>
 
 
